@@ -383,6 +383,7 @@ Makefile: ../../samp2_4.pro ../../../../QT/6.7.2/mingw_64/mkspecs/win32-g++/qmak
 		../../../../QT/6.7.2/mingw_64/mkspecs/features/qt_config.prf \
 		../../../../QT/6.7.2/mingw_64/mkspecs/win32-g++/qmake.conf \
 		../../../../QT/6.7.2/mingw_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../QT/6.7.2/mingw_64/mkspecs/features/exclusive_builds.prf \
 		../../../../QT/6.7.2/mingw_64/mkspecs/features/toolchain.prf \
 		../../../../QT/6.7.2/mingw_64/mkspecs/features/default_pre.prf \
@@ -412,7 +413,6 @@ Makefile: ../../samp2_4.pro ../../../../QT/6.7.2/mingw_64/mkspecs/win32-g++/qmak
 		../../../../QT/6.7.2/mingw_64/lib/Qt6Gui.prl \
 		../../../../QT/6.7.2/mingw_64/lib/Qt6Core.prl \
 		../../../../QT/6.7.2/mingw_64/lib/Qt6EntryPoint.prl \
-		.qmake.stash \
 		../../../../QT/6.7.2/mingw_64/mkspecs/features/build_pass.prf \
 		../../res.qrc
 	$(QMAKE) -o Makefile ..\..\samp2_4.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -729,6 +729,7 @@ Makefile: ../../samp2_4.pro ../../../../QT/6.7.2/mingw_64/mkspecs/win32-g++/qmak
 ../../../../QT/6.7.2/mingw_64/mkspecs/features/qt_config.prf:
 ../../../../QT/6.7.2/mingw_64/mkspecs/win32-g++/qmake.conf:
 ../../../../QT/6.7.2/mingw_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../QT/6.7.2/mingw_64/mkspecs/features/exclusive_builds.prf:
 ../../../../QT/6.7.2/mingw_64/mkspecs/features/toolchain.prf:
 ../../../../QT/6.7.2/mingw_64/mkspecs/features/default_pre.prf:
@@ -758,7 +759,6 @@ Makefile: ../../samp2_4.pro ../../../../QT/6.7.2/mingw_64/mkspecs/win32-g++/qmak
 ../../../../QT/6.7.2/mingw_64/lib/Qt6Gui.prl:
 ../../../../QT/6.7.2/mingw_64/lib/Qt6Core.prl:
 ../../../../QT/6.7.2/mingw_64/lib/Qt6EntryPoint.prl:
-.qmake.stash:
 ../../../../QT/6.7.2/mingw_64/mkspecs/features/build_pass.prf:
 ../../res.qrc:
 qmake: FORCE

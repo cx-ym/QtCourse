@@ -8,6 +8,7 @@
 #include    <QCoreApplication>
 #include    <Qlabel>
 #include    <QTextCharFormat>
+#include    <QMessageBox>
 
 
 void QWMainWind::updateCurFile(QString aFile)
@@ -185,10 +186,9 @@ void QWMainWind::on_txtEdit_selectionChanged()
     ui->actFontUnder->setChecked(fmt.fontUnderline()); //是否有下划线
 }
 
-
-
-void QWMainWind::on_actionabout_triggered()
+void QWMainWind::on_actabout_triggered()
 {
-
+    QMessageBox::information(nullptr, "Title", "This is a popup message!");
+    qDebug()<<"hello";
 }
 

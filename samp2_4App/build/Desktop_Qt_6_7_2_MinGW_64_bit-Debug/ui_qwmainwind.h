@@ -16,6 +16,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -36,8 +37,9 @@ public:
     QAction *actFont;
     QAction *actNew;
     QAction *actToolbarLab;
-    QAction *actionabout;
+    QAction *actabout;
     QWidget *centralWidget;
+    QTextEdit *txtEdit;
     QMenuBar *menuBar;
     QMenu *menu;
     QMenu *menu_2;
@@ -49,7 +51,7 @@ public:
     {
         if (QWMainWind->objectName().isEmpty())
             QWMainWind->setObjectName("QWMainWind");
-        QWMainWind->resize(543, 416);
+        QWMainWind->resize(543, 258);
         QFont font;
         font.setPointSize(11);
         QWMainWind->setFont(font);
@@ -116,11 +118,17 @@ public:
         actToolbarLab->setCheckable(true);
         actToolbarLab->setChecked(true);
         actToolbarLab->setMenuRole(QAction::MenuRole::TextHeuristicRole);
-        actionabout = new QAction(QWMainWind);
-        actionabout->setObjectName("actionabout");
-        actionabout->setIcon(icon9);
+        actabout = new QAction(QWMainWind);
+        actabout->setObjectName("actabout");
+        actabout->setIcon(icon9);
         centralWidget = new QWidget(QWMainWind);
         centralWidget->setObjectName("centralWidget");
+        txtEdit = new QTextEdit(centralWidget);
+        txtEdit->setObjectName("txtEdit");
+        txtEdit->setGeometry(QRect(50, 15, 396, 136));
+        QFont font1;
+        font1.setPointSize(16);
+        txtEdit->setFont(font1);
         QWMainWind->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(QWMainWind);
         menuBar->setObjectName("menuBar");
@@ -145,10 +153,9 @@ public:
         menuBar->addAction(menu_3->menuAction());
         menu->addAction(actNew);
         menu->addAction(actOpen);
+        menu->addAction(actabout);
         menu->addSeparator();
         menu->addAction(actClose);
-        menu->addSeparator();
-        menu->addAction(actionabout);
         menu_2->addAction(actCut);
         menu_2->addAction(actCopy);
         menu_2->addAction(actPaste);
@@ -160,8 +167,7 @@ public:
         menu_3->addSeparator();
         menu_3->addAction(actToolbarLab);
         mainToolBar->addAction(actNew);
-        mainToolBar->addSeparator();
-        mainToolBar->addAction(actionabout);
+        mainToolBar->addAction(actabout);
         mainToolBar->addAction(actOpen);
         mainToolBar->addAction(actClear);
         mainToolBar->addSeparator();
@@ -176,6 +182,10 @@ public:
 
         retranslateUi(QWMainWind);
         QObject::connect(actClose, &QAction::triggered, QWMainWind, qOverload<>(&QMainWindow::close));
+        QObject::connect(actClear, &QAction::triggered, txtEdit, qOverload<>(&QTextEdit::clear));
+        QObject::connect(actCut, &QAction::triggered, txtEdit, qOverload<>(&QTextEdit::cut));
+        QObject::connect(actCopy, &QAction::triggered, txtEdit, qOverload<>(&QTextEdit::copy));
+        QObject::connect(actPaste, &QAction::triggered, txtEdit, qOverload<>(&QTextEdit::paste));
 
         QMetaObject::connectSlotsByName(QWMainWind);
     } // setupUi
@@ -240,7 +250,21 @@ public:
         actNew->setShortcut(QCoreApplication::translate("QWMainWind", "Ctrl+N", nullptr));
 #endif // QT_CONFIG(shortcut)
         actToolbarLab->setText(QCoreApplication::translate("QWMainWind", "\346\230\276\347\244\272\345\267\245\345\205\267\346\240\217\346\226\207\345\255\227\346\240\207\347\255\276", nullptr));
-        actionabout->setText(QCoreApplication::translate("QWMainWind", "\345\205\263\344\272\216", nullptr));
+        actabout->setText(QCoreApplication::translate("QWMainWind", "\345\205\263\344\272\216", nullptr));
+#if QT_CONFIG(tooltip)
+        actabout->setToolTip(QCoreApplication::translate("QWMainWind", "\345\205\263\344\272\216", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actabout->setShortcut(QCoreApplication::translate("QWMainWind", "Ctrl+Z", nullptr));
+#endif // QT_CONFIG(shortcut)
+        txtEdit->setHtml(QCoreApplication::translate("QWMainWind", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:16pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         menu->setTitle(QCoreApplication::translate("QWMainWind", "\346\226\207\344\273\266", nullptr));
         menu_2->setTitle(QCoreApplication::translate("QWMainWind", "\347\274\226\350\276\221", nullptr));
         menu_3->setTitle(QCoreApplication::translate("QWMainWind", "\346\240\274\345\274\217", nullptr));

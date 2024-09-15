@@ -51,9 +51,7 @@ private slots:
 //  自定义槽函数
     void on_spinBoxFontSize_valueChanged(int aFontSize);//改变字体大小的SpinBox的响应
     void on_comboFont_currentIndexChanged(const QString &arg1);//FontCombobox的响应，选择字体名称
-    void on_actionabout_destroyed(QObject *arg1);
-
-    void on_actionabout_triggered();
+    void on_actabout_triggered();
 
 private:
     Ui::QWMainWind *ui;

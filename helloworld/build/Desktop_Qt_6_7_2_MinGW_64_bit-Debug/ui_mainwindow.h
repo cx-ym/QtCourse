@@ -10,9 +10,11 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
@@ -23,17 +25,22 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionhello;
     QWidget *centralwidget;
     QPushButton *pushButton;
     QLabel *label;
     QMenuBar *menubar;
+    QMenu *menu;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(800, 600);
+        MainWindow->resize(738, 600);
+        actionhello = new QAction(MainWindow);
+        actionhello->setObjectName("actionhello");
+        actionhello->setMenuRole(QAction::MenuRole::NoRole);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         pushButton = new QPushButton(centralwidget);
@@ -45,11 +52,16 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 25));
+        menubar->setGeometry(QRect(0, 0, 738, 25));
+        menu = new QMenu(menubar);
+        menu->setObjectName("menu");
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
+
+        menubar->addAction(menu->menuAction());
+        menu->addAction(actionhello);
 
         retranslateUi(MainWindow);
 
@@ -59,8 +71,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        actionhello->setText(QCoreApplication::translate("MainWindow", "\344\275\240\345\245\275", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "hellworld", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "\344\275\240\345\245\275\345\225\212", nullptr));
+        menu->setTitle(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
     } // retranslateUi
 
 };

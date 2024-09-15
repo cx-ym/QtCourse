@@ -843,7 +843,10 @@ debug/qwmainwind.o: ../../qwmainwind.cpp ../../qwmainwind.h \
 		../../../../../../QT/6.7.2/mingw_64/include/QtWidgets/qfontdialog.h \
 		../../../../../../QT/6.7.2/mingw_64/include/QtCore/QCoreApplication \
 		../../../../../../QT/6.7.2/mingw_64/include/QtWidgets/Qlabel \
-		../../../../../../QT/6.7.2/mingw_64/include/QtGui/QTextCharFormat
+		../../../../../../QT/6.7.2/mingw_64/include/QtGui/QTextCharFormat \
+		../../../../../../QT/6.7.2/mingw_64/include/QtWidgets/QMessageBox \
+		../../../../../../QT/6.7.2/mingw_64/include/QtWidgets/qmessagebox.h \
+		../../../../../../QT/6.7.2/mingw_64/include/QtWidgets/qdialogbuttonbox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\qwmainwind.o ..\..\qwmainwind.cpp
 
 debug/qrc_res.o: debug/qrc_res.cpp 
