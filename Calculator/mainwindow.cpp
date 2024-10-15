@@ -4,6 +4,10 @@
 #include "math.h"
 #include "QKeyEvent"
 
+//正负转换有bug，需要operands有数才能实现转化，修改方向之一：在键入数字时寻找适合时机将数字push进operands中？
+//小数点功能仍需完善
+//小数运算存在bug，目前没有头绪
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -194,7 +198,6 @@ void MainWindow::on_btnEqual_clicked()
     qDebug() << result;
     ui->display->setText(result);
 }
-
 
 void MainWindow::on_btnChange_clicked()
 {
