@@ -190,6 +190,7 @@ void MainWindow::btnUnaryOperatorClickead()
     } else result = operands.back().toDouble();
     QString op = qobject_cast<QPushButton *>(sender())->text();
 
+    operands.pop_back();
     if (op == "%")
         result /= 100.0;
     else if (op == "1/x")
