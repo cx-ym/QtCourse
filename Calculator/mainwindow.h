@@ -21,7 +21,9 @@ public:
     ~MainWindow();
 
     QString operand;
+    QString operandtmp;
     QString opcode;
+    QString codetmp;
     QStack<QString> operands;
     QStack<QString> opcodes;
     QMap<int, QPushButton *> digitBtns;
@@ -47,6 +49,8 @@ private slots:
     void on_btnChange_clicked();
 
     virtual void keyPressEvent(QKeyEvent* event);
+
+    void on_btnClear_clicked();
 
 private:
     Ui::MainWindow *ui;

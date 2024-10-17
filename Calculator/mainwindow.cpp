@@ -4,9 +4,6 @@
 #include "math.h"
 #include "QKeyEvent"
 
-//正负转换有bug，需要operands有数才能实现转化，修改方向之一：在键入数字时寻找适合时机将数字push进operands中？
-//小数点功能仍需完善
-//小数运算存在bug，目前没有头绪
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -75,8 +72,24 @@ MainWindow::~MainWindow()
 QString MainWindow::calculation(bool *ok)
 {
     double result = 0;
-    qDebug() << operands.size();
-    qDebug() << opcodes.size();
+    if (operands.size() == 1 && opcodes.size() == 0 && !codetmp.isEmpty()) {
+        double cnt = operands.back().toDouble();
+        if (codetmp == "+") {
+            result = cnt + operandtmp.toDouble();
+        } else if (codetmp == "-") {
+            result = cnt - operandtmp.toDouble();
+        } else if (codetmp == "×") {
+            result = cnt * operandtmp.toDouble();
+        } else if (codetmp == "/") {
+            result = cnt / operandtmp.toDouble();
+        }
+        operands.pop_back();
+        operands.push_back(QString::number(result));
+        qDebug() << codetmp;
+        qDebug() << operandtmp.toDouble();
+    }
+    qDebug() << "operands.size()=" << operands.size();
+    qDebug() << "opcodes.size()=" << opcodes.size();
     if (operands.size() == 2 && opcodes.size() > 0) {
         //取操作数
         double operand1 = operands.front().toDouble();
@@ -157,8 +170,10 @@ void MainWindow::btnBinaryOperatorClicked()
         operands.push_back(operand);
         operand = "";
     }
-    opcodes.push_back(opcode);
-
+    if (opcode != "=") {
+        opcodes.push_back(opcode);
+        codetmp = opcode;
+    }
     if (operands.size() == 2) {
         QString result = calculation();
         ui->display->setText(result);
@@ -167,23 +182,25 @@ void MainWindow::btnBinaryOperatorClicked()
 
 void MainWindow::btnUnaryOperatorClickead()
 {
+    double result = 0;
     if (operand != "") {
-        double result = operand.toDouble();
+        result = operand.toDouble();
         operand = "";
 
-        QString op = qobject_cast<QPushButton *>(sender())->text();
+    } else result = operands.back().toDouble();
+    QString op = qobject_cast<QPushButton *>(sender())->text();
 
-        if (op == "%")
-            result /= 100.0;
-        else if (op == "1/x")
-            result = 1 / result;
-        else if (op == "x^2")
-            result *= result;
-        else if (op == "√x")
-            result = sqrt(result);
+    if (op == "%")
+        result /= 100.0;
+    else if (op == "1/x")
+        result = 1 / result;
+    else if (op == "x^2")
+        result *= result;
+    else if (op == "√x")
+        result = sqrt(result);
 
-        ui->display->setText(QString::number(result));
-    }
+    operands.push_back(QString::number(result));
+    ui->display->setText(QString::number(result));
 }
 
 
@@ -191,25 +208,33 @@ void MainWindow::on_btnEqual_clicked()
 {
     if (operand != "") {
         operands.push_back(operand);
+        operandtmp = operand;
         operand = "";
     }
 
     QString result = calculation();
-    qDebug() << result;
+    qDebug() << "=" << result;
     ui->display->setText(result);
 }
 
 void MainWindow::on_btnChange_clicked()
 {
-    double result = operands.front().toDouble() * -1;
-    operands.pop_front();
-    operands.push_back(QString::number(result));
+    double result = 0;
+    if (operands.size() == 0) {
+        result = operand.toDouble() * -1;
+        operands.push_back(QString::number(result));
+    } else {
+        result = operands.front().toDouble() * -1;
+        operands.pop_front();
+        operands.push_back(QString::number(result));
+    }
+
     qDebug() << "result=" << result;
     qDebug() << operands.front();
     ui->display->setText(QString::number(result));
 }
 
-void MainWindow::keyPressEvent(QKeyEvent *event)
+void MainWindow::keyPressEvent(QKeyEvent * event)
 {
     foreach (auto btnkey, digitBtns.keys()) {
         if (event->key() == btnkey)
@@ -225,5 +250,14 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     if (event->key() == Qt::Key_Backspace) {
         ui->btnDel->animateClick();
     }
+}
+
+
+void MainWindow::on_btnClear_clicked()
+{
+    if (operands.size() != 0) {
+        operand = "";
+    }
+    ui->display->setText(operand);
 }
 
