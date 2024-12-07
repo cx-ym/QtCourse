@@ -31,7 +31,7 @@ public slots:
     void goDoctorView();
     void goDepartmentView();
     void goPatientView();
-    void goPatientEditView();
+    void goPatientEditView(int rowNo);
     void goPreviousView();
 
 private slots:

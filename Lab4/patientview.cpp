@@ -27,6 +27,28 @@ PatientView::~PatientView()
 
 void PatientView::on_btAdd_clicked()
 {
-    emit goPatientEditView();
+    int currow = IDatabase::getInstance().AddNewPatient();
+    emit goPatientEditView(currow);
+}
+
+
+void PatientView::on_btSearch_clicked()
+{
+    QString filter = QString("name like '%%1%'").arg(ui->txtSearch->text());
+    IDatabase::getInstance().searchPatient(filter);
+}
+
+
+void PatientView::on_btDelete_clicked()
+{
+    IDatabase::getInstance().deleteCurrentPatient();
+}
+
+
+void PatientView::on_btEdit_clicked()
+{
+    QModelIndex curIndex = IDatabase::getInstance().thePatientSelection->currentIndex();
+
+    emit goPatientEditView(curIndex.row());
 }
 
