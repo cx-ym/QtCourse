@@ -165,14 +165,20 @@ void normal::btnBinaryOperatorClicked()
 void normal::btnUnaryOperatorClickead()
 {
     double result = 0;
-    if (operand != "") {
+    if (operands.size() == 0) {
         result = operand.toDouble();
+        qDebug()<<"operand is not empty";
         operand = "";
 
-    } else result = operands.back().toDouble();
+    } else {
+        result = operands.back().toDouble();
+        operands.pop_back();
+    }
+
     QString op = qobject_cast<QPushButton *>(sender())->text();
 
-    operands.pop_back();
+
+
     if (op == "%")
         result /= 100.0;
     else if (op == "1/x")
@@ -244,10 +250,5 @@ void normal::on_btnClear_clicked()
     ui->display->setText(operand);
 }
 
-
-void normal::on_science_triggered()
-{
-    emit gotoScience();
-}
 
 

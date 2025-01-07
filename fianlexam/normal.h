@@ -1,6 +1,7 @@
 #ifndef NORMAL_H
 #define NORMAL_H
 
+#include <QWidget>
 #include <QStack>
 #include <QMap>
 #include <QPushButton>
@@ -50,10 +51,6 @@ private slots:
     void on_btnClear_clicked();
 
     void on_science_triggered();
-
-
-signals:
-    void gotoScience();
 
 private:
     Ui::normal *ui;
