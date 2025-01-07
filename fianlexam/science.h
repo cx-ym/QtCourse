@@ -59,6 +59,10 @@ private slots:
 
     void on_btnLog_clicked();
 
+    void on_btnReciprocal_clicked();
+
+    void on_btnSqaure_clicked();
+
 private:
     Ui::science *ui;
 };

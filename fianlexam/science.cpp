@@ -41,7 +41,8 @@ science::science(QWidget *parent)
     }
 
     //另外几个
-    connect(ui->btnSqaure, SIGNAL(clicked(bool)), this, SLOT(btnUnaryOperatorClickead()));
+    connect(ui->btnSqaure, SIGNAL(clicked(bool)), this, SLOT(btnBinaryOperatorClicked()));
+
     connect(ui->btnSqrt, SIGNAL(clicked(bool)), this, SLOT(btnUnaryOperatorClickead()));
     connect(ui->btnReciprocal, SIGNAL(clicked(bool)), this, SLOT(btnUnaryOperatorClickead()));
     connect(ui->btnPercentage, SIGNAL(clicked(bool)), this, SLOT(btnUnaryOperatorClickead()));
@@ -92,6 +93,9 @@ QString science::calculation(bool *ok)
             result = operand1 * operand2;
         } else if (op == "/") {
             result = operand1 / operand2;
+        } else if (op == "x^n"){
+            qDebug()<<"operand1="<<operand1<<" operand2="<<operand2;
+            result = pow(operand1, operand2);
         }
 
         operands.push_back(QString::number(result));
@@ -182,7 +186,7 @@ void science::btnUnaryOperatorClickead()
         result /= 100.0;
     else if (op == "1/x")
         result = 1 / result;
-    else if (op == "x^n")
+    else if (op == "x^2")
         result *= result;
     else if (op == "√x")
         result = sqrt(result);
@@ -255,36 +259,16 @@ void science::on_btnClear_clicked()
 void science::on_btnSin_clicked()
 {
     qDebug()<<"sin能用";
-    // if(operand.size() == 0){
-    //     // 弧度值
-    //     double radians = 0;
-
-    //     // 计算正弦值
-    //     double sinValue = sin(radians);
-    //     qDebug() << "sin(1.0) = " << sinValue;
-
-    //     // 计算余弦值
-    //     double cosValue = std::cos(radians);
-    //     qDebug() << "cos(1.0) = " << cosValue;
-
-    //     // 计算正切值
-    //     double tanValue = std::tan(radians);
-    //     qDebug() << "tan(1.0) = " << tanValue;
-    // }
 
     double result = 0;
-    if(!operand.isEmpty() && operands.size() == 0){
-        operands.push_back(operand);
+    if(operands.size() == 0){
+        result = sin(operand.toDouble() * 180 / M_PI);
         qDebug()<<"operand join the operands";
-    }
-    if (operands.size() == 0) {
-        result = sin(0);;
-        qDebug()<<"do not come in";
         operands.push_back(QString::number(result));
+        operand = "";
     } else {
-        result = sin(operands.front().toDouble());
-
-        operands.pop_front();
+        result = sin(operands.back().toDouble()* M_PI / 180.0);
+        operands.pop_back();
         operand = "";
         operands.push_back(QString::number(result));
     }
@@ -298,12 +282,44 @@ void science::on_btnSin_clicked()
 void science::on_btnCos_clicked()
 {
     qDebug()<<"cos能用";
+    double result = 0;
+    if(operands.size() == 0){
+        result = cos(operand.toDouble() * 180 / M_PI);
+        qDebug()<<"operand join the operands";
+        operands.push_back(QString::number(result));
+        operand = "";
+    } else {
+        result = cos(operands.back().toDouble()* M_PI / 180.0);
+        operands.pop_back();
+        operand = "";
+        operands.push_back(QString::number(result));
+    }
+
+    qDebug() << "result=" << result;
+    qDebug() << operands.front();
+    ui->display->setText(QString::number(result));
 }
 
 
 void science::on_btnTan_clicked()
 {
     qDebug()<<"tan能用";
+    double result = 0;
+    if(operands.size() == 0){
+        result = tan(operand.toDouble() * 180 / M_PI);
+        qDebug()<<"operand join the operands";
+        operands.push_back(QString::number(result));
+        operand = "";
+    } else {
+        result = tan(operands.back().toDouble()* M_PI / 180.0);
+        operands.pop_back();
+        operand = "";
+        operands.push_back(QString::number(result));
+    }
+
+    qDebug() << "result=" << result;
+    qDebug() << operands.front();
+    ui->display->setText(QString::number(result));
 }
 
 
@@ -312,6 +328,46 @@ void science::on_btnTan_clicked()
 
 void science::on_btnLog_clicked()
 {
-    qDebug()<<"log能用";
+    qDebug()<<"ln能用";
+    double result = 0;
+    if(operands.size() == 0){
+        result = log(operand.toDouble());
+        qDebug()<<"operand join the operands";
+        operands.push_back(QString::number(result));
+        operand = "";
+    } else {
+        result = log(operands.back().toDouble());
+        operands.pop_back();
+        operand = "";
+        operands.push_back(QString::number(result));
+    }
+
+    qDebug() << "result=" << result;
+    qDebug() << operands.front();
+    ui->display->setText(QString::number(result));
 }
+
+
+void science::on_btnReciprocal_clicked()
+{
+    qDebug()<<"log能用";
+    double result = 0;
+    if(operands.size() == 0){
+        result = log10(operand.toDouble());
+        qDebug()<<"operand join the operands";
+        operands.push_back(QString::number(result));
+        operand = "";
+    } else {
+        result = log10(operands.back().toDouble());
+        operands.pop_back();
+        operand = "";
+        operands.push_back(QString::number(result));
+    }
+
+    qDebug() << "result=" << result;
+    qDebug() << operands.front();
+    ui->display->setText(QString::number(result));
+}
+
+
 

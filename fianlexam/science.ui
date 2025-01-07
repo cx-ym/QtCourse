@@ -80,7 +80,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>1/x</string>
+        <string>log</string>
        </property>
       </widget>
      </item>
@@ -395,7 +395,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>log</string>
+        <string>ln</string>
        </property>
       </widget>
      </item>
