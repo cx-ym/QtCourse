@@ -35,8 +35,9 @@ public:
     QMap<int, QPushButton *> binaryBtns;
     QList<QPushButton*> buttons;
 
-    QString calculation(bool *ok = NULL);
+
     void printContent();
+    void calculation();
     void setButtonsEnabled(QList<QPushButton*>& buttons, bool enabled);
 
 private slots:
@@ -69,6 +70,18 @@ private slots:
 
     void on_lineEditBin_selectionChanged();
 
+
+    void on_btnAnd_clicked();
+
+    void on_btnOr_clicked();
+
+    void on_btnNot_clicked();
+
+    void on_btnNand_clicked();
+
+    void on_btnNor_clicked();
+
+    void on_btnXor_clicked();
 
 private:
     Ui::chengxuyuan *ui;

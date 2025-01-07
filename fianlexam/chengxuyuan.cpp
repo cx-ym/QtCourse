@@ -56,6 +56,11 @@ chengxuyuan::chengxuyuan(QWidget *parent)
         connect(btn, SIGNAL(clicked()), this, SLOT(btnNumClicked()));
     }
 
+    connect(ui->btnAnd, SIGNAL(clicked()), this, SLOT(calculation()));
+    connect(ui->btnOr, SIGNAL(clicked()), this, SLOT(calculation()));
+    connect(ui->btnNor, SIGNAL(clicked()), this, SLOT(calculation()));
+    connect(ui->btnXor, SIGNAL(clicked()), this, SLOT(calculation()));
+    connect(ui->btnNand, SIGNAL(clicked()), this, SLOT(calculation()));
 
     Type = "Dec";
 
@@ -247,10 +252,7 @@ void chengxuyuan::on_btnEqual_clicked()
         operand = "";
     }
 
-    printContent();
-    // QString result = calculation();
-    // qDebug() << "=" << result;
-    // ui->display->setText(result);
+    calculation();
 }
 
 void chengxuyuan::on_btnDel_clicked()
@@ -470,4 +472,181 @@ void chengxuyuan::printContent(){
 
 }
 
+void chengxuyuan::calculation(){
+    double result = 0;
+    // if (operands.size() == 1 && opcodes.size() == 0 && !codetmp.isEmpty()) {
+    //     double cnt = operands.back().toDouble();
+    //     operands.pop_back();
+    //     operands.push_back(QString::number(result));
+    //     qDebug() << codetmp;
+    //     qDebug() << operandtmp.toDouble();
+    // }
+    qDebug() << "operands.size()=" << operands.size();
+    qDebug() << "opcodes.size()=" << opcodes.size();
+    if (operands.size() == 2 && opcodes.size() > 0) {
+        //取操作数
+        double operand1 = operands.front().toDouble();
+        operands.pop_front();
+        double operand2 = operands.front().toDouble();
+        operands.pop_front();
+
+        //取操作符
+        QString op = opcodes.front();
+        opcodes.pop_front();
+        QString flag;
+
+        if (op == "AND") {
+            int num1 = operand1;
+            int num2 = operand2;
+
+            qDebug()<<"operand1="<<operand1<<op<<"operand2="<<operand2;
+
+            int result = num1 & num2;
+            qDebug()<<"reslut="<<result;
+            operand = QString::number(result);
+            flag = operand;
+            qDebug()<<"operand="<<operand;
+
+        } else if (op == "OR") {
+            int num1 = operand1;
+            int num2 = operand2;
+
+            int result = num1 | num2;
+            operand = QString::number(result);
+            flag = operand;
+
+        }  else if (op == "NAND") {
+            int num1 = operand1;
+            int num2 = operand2;
+
+            int result = ~(num1 & num2);
+            operand = QString::number(result);
+            flag = operand;
+        }else if (op == "NOR") {
+            int num1 = operand1;
+            int num2 = operand2;
+            int result = ~(num1 | num2);
+            operand = QString::number(result);
+            flag = operand;
+        }else if (op == "XOR") {
+            int num1 = operand1;
+            int num2 = operand2;
+            int result = num1 ^ num2;
+            operand = QString::number(result);
+            flag = operand;
+        }
+
+        operands.push_back(flag);
+        qDebug()<<"operands.push_back="<<flag;
+        printContent();
+        operand = "";
+        // ui->statusbar->showMessage(QString("operands is %1, opcodes is %2").arg(operands.size()).arg(opcodes.size()));
+    }
+}
+
+
+void chengxuyuan::on_btnAnd_clicked()
+{
+    QString opcode = qobject_cast<QPushButton *>(sender())->text();
+    if (operand != "") {
+        operands.push_back(operand);
+        operand = "";
+    }
+    if (opcode != "=") {
+        opcodes.push_back(opcode);
+        codetmp = opcode;
+    }
+    if (operands.size() == 2) {
+        calculation();
+
+    }
+
+}
+
+
+void chengxuyuan::on_btnOr_clicked()
+{
+    QString opcode = qobject_cast<QPushButton *>(sender())->text();
+    if (operand != "") {
+        operands.push_back(operand);
+        operand = "";
+    }
+    if (opcode != "=") {
+        opcodes.push_back(opcode);
+        codetmp = opcode;
+    }
+    if (operands.size() == 2) {
+        calculation();
+
+    }
+
+}
+
+
+void chengxuyuan::on_btnNot_clicked()
+{
+    int num = operand.toInt();
+    int result = ~num;
+
+    operand = QString::number(result);
+    printContent();
+    operand = "";
+}
+
+
+void chengxuyuan::on_btnNand_clicked()
+{
+    QString opcode = qobject_cast<QPushButton *>(sender())->text();
+    if (operand != "") {
+        operands.push_back(operand);
+        operand = "";
+    }
+    if (opcode != "=") {
+        opcodes.push_back(opcode);
+        codetmp = opcode;
+    }
+    if (operands.size() == 2) {
+        calculation();
+
+    }
+
+}
+
+
+void chengxuyuan::on_btnNor_clicked()
+{
+    QString opcode = qobject_cast<QPushButton *>(sender())->text();
+    if (operand != "") {
+        operands.push_back(operand);
+        operand = "";
+    }
+    if (opcode != "=") {
+        opcodes.push_back(opcode);
+        codetmp = opcode;
+    }
+    if (operands.size() == 2) {
+        calculation();
+
+    }
+
+}
+
+
+void chengxuyuan::on_btnXor_clicked()
+{
+    QString opcode = qobject_cast<QPushButton *>(sender())->text();
+    if (operand != "") {
+        operands.push_back(operand);
+        operand = "";
+    }
+    if (opcode != "=") {
+        opcodes.push_back(opcode);
+        codetmp = opcode;
+    }
+    if (operands.size() == 2) {
+        calculation();
+
+    }
+
+}
 
