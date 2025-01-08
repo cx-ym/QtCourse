@@ -15,6 +15,21 @@ public:
     explicit date(QWidget *parent = nullptr);
     ~date();
 
+private slots:
+    void on_dateEdit_dateChanged(const QDate &date);
+
+    void on_dateEdit_2_dateChanged(const QDate &date);
+
+    void on_comboBox_currentIndexChanged(int index);
+
+    void on_comboBox_2_currentTextChanged(const QString &arg1);
+
+    void on_comboBox_4_currentTextChanged(const QString &arg1);
+
+    void on_comboBox_3_currentTextChanged(const QString &arg1);
+
+    void on_dateEdit_4_dateChanged(const QDate &date);
+
 private:
     Ui::date *ui;
 };
