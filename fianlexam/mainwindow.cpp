@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    translator = new QTranslator(this);
+
     gotoNormal();
 }
 
@@ -43,12 +45,21 @@ void MainWindow::gotoDate()
     this->setWindowTitle("日期计算模式");
 }
 
-void MainWindow::gotoChange()
+void MainWindow::gotoCurrency()
 {
-    Change = new change();
-    pushWidgetToStackView(Change);
-    this->setWindowTitle("汇率与容量转换");
+    Currency = new currency();
+    pushWidgetToStackView(Currency);
+    this->setWindowTitle("货币换算模式");
 }
+
+void MainWindow::gotoCapacity()
+{
+    Capacity = new capacity();
+    pushWidgetToStackView(Capacity);
+    this->setWindowTitle("容量换算模式");
+}
+
+
 
 void MainWindow::pushWidgetToStackView(QWidget *widget)
 {
@@ -82,8 +93,36 @@ void MainWindow::on_date_triggered()
 }
 
 
-void MainWindow::on_change_triggered()
+
+
+void MainWindow::on_currency_triggered()
 {
-    gotoChange();
+    gotoCurrency();
+}
+
+
+void MainWindow::on_capacity_triggered()
+{
+    gotoCapacity();
+}
+
+
+void MainWindow::on_Chinexe_triggered()
+{
+    translator->load(":/calculator_zh_CN.qm");
+    qDebug() << "安装中文";
+    qApp->installTranslator(this->translator);
+    //刷新UI
+    this->ui->retranslateUi(this);
+}
+
+
+void MainWindow::on_English_triggered()
+{
+    translator->load(":/calculator_en_US.qm");
+    qDebug() << "安装英文";
+    qApp->installTranslator(this->translator);
+    //刷新UI
+    this->ui->retranslateUi(this);
 }
 

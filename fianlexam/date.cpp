@@ -25,7 +25,7 @@ date::date(QWidget *parent)
     }
 
     ui->radioButton->setChecked(true);
-    ui->lineEdit_2->setText(currentDate.toString("yyyy年MM月dd日"));
+    ui->lineEdit_2->setText(currentDate.toString("yyyy-MM-dd"));
 
     ui->stackedWidget->setCurrentIndex(0);
 }
@@ -102,7 +102,7 @@ void date::on_comboBox_2_currentTextChanged(const QString &arg1)
 {
     qDebug()<<arg1;
     QString dateString = ui->lineEdit_2->text();
-    QDate currentDate = QDate::fromString(dateString, "yyyy年MM月dd日");
+    QDate currentDate = QDate::fromString(dateString, "yyyy-MM-dd");
     QDate newDate;
     // int month = ui->comboBox_3->currentText().toInt();
     // int day = ui->comboBox_4->currentText().toInt();
@@ -118,7 +118,7 @@ void date::on_comboBox_2_currentTextChanged(const QString &arg1)
         newDate = currentDate.addYears(-arg1.toInt());
     }
 
-    ui->lineEdit_2->setText(newDate.toString("yyyy年MM月dd日"));
+    ui->lineEdit_2->setText(newDate.toString("yyyy-MM-dd"));
 }
 
 
@@ -126,7 +126,7 @@ void date::on_comboBox_4_currentTextChanged(const QString &arg1)
 {
     qDebug()<<arg1;
     QString dateString = ui->lineEdit_2->text();
-    QDate currentDate = QDate::fromString(dateString, "yyyy年MM月dd日");
+    QDate currentDate = QDate::fromString(dateString, "yyyy-MM-dd");
     QDate newDate;
     // int month = ui->comboBox_3->currentText().toInt();
     // int year = ui->comboBox_2->currentText().toInt();
@@ -142,7 +142,7 @@ void date::on_comboBox_4_currentTextChanged(const QString &arg1)
         // newDate = currentDate.addYears(-year);
     }
 
-    ui->lineEdit_2->setText(newDate.toString("yyyy年MM月dd日"));
+    ui->lineEdit_2->setText(newDate.toString("yyyy-MM-dd"));
 }
 
 
@@ -150,7 +150,7 @@ void date::on_comboBox_3_currentTextChanged(const QString &arg1)
 {
     qDebug()<<arg1;
     QString dateString = ui->lineEdit_2->text();
-    QDate currentDate = QDate::fromString(dateString, "yyyy年MM月dd日");
+    QDate currentDate = QDate::fromString(dateString, "yyyy-MM-dd");
     QDate newDate;
     // int year = ui->comboBox_2->currentText().toInt();
     // int day = ui->comboBox_4->currentText().toInt();
@@ -166,7 +166,8 @@ void date::on_comboBox_3_currentTextChanged(const QString &arg1)
         // newDate = currentDate.addYears(-year);
     }
 
-    ui->lineEdit_2->setText(newDate.toString("yyyy年MM月dd日"));}
+    ui->lineEdit_2->setText(newDate.toString("yyyy-MM-dd"));
+}
 
 
 void date::on_dateEdit_4_dateChanged(const QDate &date)
@@ -192,6 +193,6 @@ void date::on_dateEdit_4_dateChanged(const QDate &date)
     }
     qDebug()<<newDate;
     newDate = currentDate;
-    ui->lineEdit_2->setText(newDate.toString("yyyy年MM月dd日"));
+    ui->lineEdit_2->setText(newDate.toString("yyyy-MM-dd"));
 }
 

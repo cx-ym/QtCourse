@@ -27,28 +27,28 @@ capacity::capacity(QWidget *parent) :
         connect(btn, SIGNAL(clicked()), this, SLOT(btnNumClicked()));
     }
 
-    ui->comboBoxBottom->addItem("毫升 (mL)", "mL");
-    ui->comboBoxBottom->addItem("升 (L)", "L");
-    ui->comboBoxBottom->addItem("立方厘米 (cm³)", "cm³");
-    ui->comboBoxBottom->addItem("立方米 (m³)", "m³");
-    ui->comboBoxBottom->addItem("立方英寸 (in³)", "in³");
-    ui->comboBoxBottom->addItem("立方英尺 (ft³)", "ft³");
-    ui->comboBoxBottom->addItem("加仑 (gal)", "gal");
-    ui->comboBoxBottom->addItem("夸脱 (qt)", "qt");
-    ui->comboBoxBottom->addItem("品脱 (pt)", "pt");
-    ui->comboBoxBottom->addItem("液量盎司 (fl oz)", "fl oz");
+    ui->comboBoxBottom->setItemData(0, "mL");
+    ui->comboBoxBottom->setItemData(1, "L");
+    ui->comboBoxBottom->setItemData(2, "cm³");
+    ui->comboBoxBottom->setItemData(3, "m³");
+    ui->comboBoxBottom->setItemData(4, "in³");
+    ui->comboBoxBottom->setItemData(5, "ft³");
+    ui->comboBoxBottom->setItemData(6, "gal");
+    ui->comboBoxBottom->setItemData(7, "qt");
+    ui->comboBoxBottom->setItemData(8, "pt");
+    ui->comboBoxBottom->setItemData(9, "fl oz");
 
 
-    ui->comboBoxTop->addItem("毫升 (mL)", "mL");
-    ui->comboBoxTop->addItem("升 (L)", "L");
-    ui->comboBoxTop->addItem("立方厘米 (cm³)", "cm³");
-    ui->comboBoxTop->addItem("立方米 (m³)", "m³");
-    ui->comboBoxTop->addItem("立方英寸 (in³)", "in³");
-    ui->comboBoxTop->addItem("立方英尺 (ft³)", "ft³");
-    ui->comboBoxTop->addItem("加仑 (gal)", "gal");
-    ui->comboBoxTop->addItem("夸脱 (qt)", "qt");
-    ui->comboBoxTop->addItem("品脱 (pt)", "pt");
-    ui->comboBoxTop->addItem("液量盎司 (fl oz)", "fl oz");
+    ui->comboBoxTop->setItemData(0, "mL");
+    ui->comboBoxTop->setItemData(1, "L");
+    ui->comboBoxTop->setItemData(2, "cm³");
+    ui->comboBoxTop->setItemData(3, "m³");
+    ui->comboBoxTop->setItemData(4, "in³");
+    ui->comboBoxTop->setItemData(5, "ft³");
+    ui->comboBoxTop->setItemData(6, "gal");
+    ui->comboBoxTop->setItemData(7, "qt");
+    ui->comboBoxTop->setItemData(8, "pt");
+    ui->comboBoxTop->setItemData(9, "fl oz");
 
     Position = "top";
     ui->lineEditTop->setStyleSheet("QLineEdit { background-color: #666; color: #fff}");

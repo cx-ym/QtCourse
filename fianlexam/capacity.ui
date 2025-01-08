@@ -39,6 +39,51 @@
            <height>30</height>
           </size>
          </property>
+         <item>
+          <property name="text">
+           <string>毫升 (mL)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>升 (L)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>立方米 (m³)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>立方英寸 (in³)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>立方英尺 (ft³)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>加仑 (gal)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>夸脱 (qt)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>品脱 (pt)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>液量盎司 (fl oz)</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item>
@@ -62,6 +107,56 @@
            <height>30</height>
           </size>
          </property>
+         <item>
+          <property name="text">
+           <string>毫升 (mL)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>升 (L)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>立方厘米 (cm³)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>立方米 (m³)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>立方英寸 (in³)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>立方英尺 (ft³)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>加仑 (gal)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>夸脱 (qt)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>品脱 (pt)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>液量盎司 (fl oz)</string>
+          </property>
+         </item>
         </widget>
        </item>
       </layout>

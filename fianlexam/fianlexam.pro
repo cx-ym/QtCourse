@@ -1,6 +1,8 @@
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+TRANSLATIONS = calculator_zh_CN.ts calculator_en_US.ts
 
 CONFIG += c++17
 
@@ -9,8 +11,9 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    change.cpp \
+    capacity.cpp \
     chengxuyuan.cpp \
+    currency.cpp \
     date.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -18,16 +21,18 @@ SOURCES += \
     science.cpp
 
 HEADERS += \
-    change.h \
+    capacity.h \
     chengxuyuan.h \
+    currency.h \
     date.h \
     mainwindow.h \
     normal.h \
     science.h
 
 FORMS += \
-    change.ui \
+    capacity.ui \
     chengxuyuan.ui \
+    currency.ui \
     date.ui \
     mainwindow.ui \
     normal.ui \
@@ -37,3 +42,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    language.qrc
