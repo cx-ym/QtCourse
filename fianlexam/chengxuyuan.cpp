@@ -285,13 +285,39 @@ void chengxuyuan::on_btnSign_clicked()
 
 void chengxuyuan::on_btnLeft_clicked()
 {
-    operand = ui->lineEditBin->text();
+    QString opcode = qobject_cast<QPushButton *>(sender())->text();
+    if (operand != "") {
+        QString binValue = ui->lineEditBin->text();
+        operands.push_back(binValue);
+        operand = "";
+    }
+    if (opcode != "=") {
+        opcodes.push_back(opcode);
+        codetmp = opcode;
+    }
+    if (operands.size() == 2) {
+        calculation();
+
+    }
 }
 
 
 void chengxuyuan::on_btnRight_clicked()
 {
+    QString opcode = qobject_cast<QPushButton *>(sender())->text();
+    if (operand != "") {
+        QString binValue = ui->lineEditBin->text();
+        operands.push_back(binValue);
+        operand = "";
+    }
+    if (opcode != "=") {
+        opcodes.push_back(opcode);
+        codetmp = opcode;
+    }
+    if (operands.size() == 2) {
+        calculation();
 
+    }
 }
 
 
@@ -532,6 +558,21 @@ void chengxuyuan::calculation(){
             int num1 = operand1;
             int num2 = operand2;
             int result = num1 ^ num2;
+            operand = QString::number(result);
+            flag = operand;
+        }else if(op == "<<"){
+            int num1 = operand1;
+            int num2 = operand2;
+
+            int result = num1 << num2;
+            operand = QString::number(result);
+            flag = operand;
+        }
+        else if(op == ">>"){
+            int num1 = operand1;
+            int num2 = operand2;
+
+            int result = num1 >> num2;
             operand = QString::number(result);
             flag = operand;
         }
