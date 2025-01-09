@@ -262,7 +262,7 @@ void science::on_btnSin_clicked()
 
     double result = 0;
     if(operands.size() == 0){
-        result = sin(operand.toDouble() * 180 / M_PI);
+        result = sin(operand.toDouble() * M_PI / 180.0);
         qDebug()<<"operand join the operands";
         operands.push_back(QString::number(result));
         operand = "";
@@ -284,7 +284,7 @@ void science::on_btnCos_clicked()
     qDebug()<<"cos能用";
     double result = 0;
     if(operands.size() == 0){
-        result = cos(operand.toDouble() * 180 / M_PI);
+        result = cos(operand.toDouble() * M_PI / 180.0);
         qDebug()<<"operand join the operands";
         operands.push_back(QString::number(result));
         operand = "";
@@ -306,7 +306,7 @@ void science::on_btnTan_clicked()
     qDebug()<<"tan能用";
     double result = 0;
     if(operands.size() == 0){
-        result = tan(operand.toDouble() * 180 / M_PI);
+        result = tan(operand.toDouble() * M_PI / 180);
         qDebug()<<"operand join the operands";
         operands.push_back(QString::number(result));
         operand = "";

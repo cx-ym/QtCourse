@@ -65,8 +65,7 @@ void MainWindow::pushWidgetToStackView(QWidget *widget)
 {
     ui->stackedWidget->addWidget(widget);
     int count = ui->stackedWidget->count();
-    ui->stackedWidget->setCurrentIndex(count - 1); //总是显示最新加入的View
-    // ui->labelTitle->setText(widget->windowTitle());
+    ui->stackedWidget->setCurrentIndex(count - 1);
 }
 
 void MainWindow::on_normal_triggered()
