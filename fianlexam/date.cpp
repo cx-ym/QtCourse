@@ -169,7 +169,6 @@ void date::on_comboBox_3_currentTextChanged(const QString &arg1)
     ui->lineEdit_2->setText(newDate.toString("yyyy-MM-dd"));
 }
 
-
 void date::on_dateEdit_4_dateChanged(const QDate &date)
 {
     qDebug()<<date;
@@ -194,5 +193,26 @@ void date::on_dateEdit_4_dateChanged(const QDate &date)
     qDebug()<<newDate;
     newDate = currentDate;
     ui->lineEdit_2->setText(newDate.toString("yyyy-MM-dd"));
+}
+
+
+
+void date::on_radioButton_clicked()
+{
+    if(ui->radioButton->isChecked()){
+        ui->radioButton->setChecked(true);
+
+        on_dateEdit_4_dateChanged(ui->dateEdit_4->date());
+    }
+}
+
+
+void date::on_radioButton_2_clicked()
+{
+    if(ui->radioButton_2->isChecked()){
+        ui->radioButton_2->setChecked(true);
+        qDebug()<<ui->dateEdit_4->date();
+        on_dateEdit_4_dateChanged(ui->dateEdit_4->date());
+    }
 }
 

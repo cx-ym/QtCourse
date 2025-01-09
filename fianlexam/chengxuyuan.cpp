@@ -285,6 +285,14 @@ void chengxuyuan::on_btnSign_clicked()
 
 void chengxuyuan::on_btnLeft_clicked()
 {
+    setButtonsEnabled(buttons, true);
+
+    ui->btnA->setEnabled(false);
+    ui->btnB->setEnabled(false);
+    ui->btnC->setEnabled(false);
+    ui->btnD->setEnabled(false);
+    ui->btnE->setEnabled(false);
+    ui->btnF->setEnabled(false);
     QString opcode = qobject_cast<QPushButton *>(sender())->text();
     if (operand != "") {
         QString binValue = ui->lineEditBin->text();
@@ -304,6 +312,14 @@ void chengxuyuan::on_btnLeft_clicked()
 
 void chengxuyuan::on_btnRight_clicked()
 {
+    setButtonsEnabled(buttons, true);
+
+    ui->btnA->setEnabled(false);
+    ui->btnB->setEnabled(false);
+    ui->btnC->setEnabled(false);
+    ui->btnD->setEnabled(false);
+    ui->btnE->setEnabled(false);
+    ui->btnF->setEnabled(false);
     QString opcode = qobject_cast<QPushButton *>(sender())->text();
     if (operand != "") {
         QString binValue = ui->lineEditBin->text();
@@ -489,26 +505,21 @@ void chengxuyuan::printContent(){
     else if(Type == "Bin"){
         qDebug()<<"进入Bin";
         QString result = operand;
+
         ui->lineEditBin->setText(result);
         ui->lineEditDec->setText(QString::number(binaryToDecimal(result)));
         ui->display->setText(result);
         ui->lineEditOct->setText(binaryToOctal(result));
         ui->lineEditHex->setText(binaryToHexadecimal(result));
+        qDebug()<<"ui->lineEditDec->text() = "<<ui->lineEditDec->text();
     }
 
 }
 
 void chengxuyuan::calculation(){
-    double result = 0;
-    // if (operands.size() == 1 && opcodes.size() == 0 && !codetmp.isEmpty()) {
-    //     double cnt = operands.back().toDouble();
-    //     operands.pop_back();
-    //     operands.push_back(QString::number(result));
-    //     qDebug() << codetmp;
-    //     qDebug() << operandtmp.toDouble();
-    // }
     qDebug() << "operands.size()=" << operands.size();
     qDebug() << "opcodes.size()=" << opcodes.size();
+
     if (operands.size() == 2 && opcodes.size() > 0) {
         //取操作数
         double operand1 = operands.front().toDouble();
@@ -521,65 +532,99 @@ void chengxuyuan::calculation(){
         opcodes.pop_front();
         QString flag;
 
+        int num1 = operand1;
+        int num2 = operand2;
+
+        int result;
+
         if (op == "AND") {
-            int num1 = operand1;
-            int num2 = operand2;
+
 
             qDebug()<<"operand1="<<operand1<<op<<"operand2="<<operand2;
 
-            int result = num1 & num2;
+            result = num1 & num2;
             qDebug()<<"reslut="<<result;
-            operand = QString::number(result);
-            flag = operand;
             qDebug()<<"operand="<<operand;
 
         } else if (op == "OR") {
-            int num1 = operand1;
-            int num2 = operand2;
-
-            int result = num1 | num2;
-            operand = QString::number(result);
-            flag = operand;
+            result = num1 | num2;
 
         }  else if (op == "NAND") {
-            int num1 = operand1;
-            int num2 = operand2;
-
-            int result = ~(num1 & num2);
-            operand = QString::number(result);
-            flag = operand;
+            result = ~(num1 & num2);
         }else if (op == "NOR") {
-            int num1 = operand1;
-            int num2 = operand2;
-            int result = ~(num1 | num2);
-            operand = QString::number(result);
-            flag = operand;
+            result = ~(num1 | num2);
         }else if (op == "XOR") {
-            int num1 = operand1;
-            int num2 = operand2;
-            int result = num1 ^ num2;
-            operand = QString::number(result);
-            flag = operand;
+            result = num1 ^ num2;
         }else if(op == "<<"){
-            int num1 = operand1;
-            int num2 = operand2;
+            result = num1 << num2;
+            if(Type == "Bin"){
+                QString s = QString::number(num1);
+                bool ok;
+                num1 = s.toInt(&ok, 2);
+                result = num1 << num2;
+                QString result1 = decimalToBinary(result);
 
-            int result = num1 << num2;
-            operand = QString::number(result);
-            flag = operand;
+                result = result1.toInt();
+            }
+            else if(Type == "Oct"){
+                QString s = QString::number(num1);
+                bool ok;
+                num1 = s.toInt(&ok, 8);
+                result = num1 << num2;
+                QString result1 = decimalToOctal(result);
+
+                result = result1.toInt();
+            }
+            else if(Type == "Hex"){
+                QString s = QString::number(num1);
+                bool ok;
+                num1 = s.toInt(&ok, 16);
+                result = num1 << num2;
+                QString result1 = decimalToHexadecimal(result);
+
+                result = result1.toInt();
+            }
+
         }
         else if(op == ">>"){
-            int num1 = operand1;
-            int num2 = operand2;
+            result = num1 >> num2;
+            if(Type == "Bin"){
+                QString s = QString::number(num1);
+                bool ok;
+                num1 = s.toInt(&ok, 2);
+                result = num1 >> num2;
+                QString result1 = decimalToBinary(result);
 
-            int result = num1 >> num2;
-            operand = QString::number(result);
-            flag = operand;
+                result = result1.toInt();
+            }
+            else if(Type == "Oct"){
+                QString s = QString::number(num1);
+                bool ok;
+                num1 = s.toInt(&ok, 8);
+                result = num1 >> num2;
+                QString result1 = decimalToOctal(result);
+
+                result = result1.toInt();
+            }
+            else if(Type == "Hex"){
+                QString s = QString::number(num1);
+                bool ok;
+                num1 = s.toInt(&ok, 16);
+                result = num1 >> num2;
+                QString result1 = decimalToHexadecimal(result);
+
+                result = result1.toInt();
+            }
+
         }
+
+        operand = QString::number(result);
+        flag = operand;
 
         operands.push_back(flag);
         qDebug()<<"operands.push_back="<<flag;
         printContent();
+        qDebug()<<ui->lineEditDec->text();
         operand = "";
         // ui->statusbar->showMessage(QString("operands is %1, opcodes is %2").arg(operands.size()).arg(opcodes.size()));
     }
